@@ -1,0 +1,14 @@
+{
+    "high_score": 46,
+    "total_credits": 137,
+    "total_destroyed": 62,
+    "total_ghost_passes": 58,
+    "total_giant_uses": 14,
+    "current_skin": "default",
+    "unlocked_skins": [
+        "default",
+        "red"
+    ],
+    "master_volume": 0.7000000000000001,
+    "bgm_enabled": true
+}

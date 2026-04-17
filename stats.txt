@@ -1,0 +1,4 @@
+high_score:0
+total_destroyed:25
+total_ghost_passes:30
+total_giant_uses:6
