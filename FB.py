@@ -236,7 +236,7 @@ class Game:
         pygame.init()
         pygame.mixer.init()
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
-        pygame.display.set_caption("Flappy Bird: Action Version")
+        pygame.display.set_caption("Action Bird")
         self.clock = pygame.time.Clock()
         self.font = pygame.font.SysFont('Arial', 24, bold=True)
         self.medium_font = pygame.font.SysFont('Arial', 32, bold=True)

@@ -29,7 +29,7 @@
 ### Các bước cài đặt
 1. Tải toàn bộ mã nguồn về máy hoặc dùng lệnh:
    ```bash
-   git clone https://github.com/TwinMindWeekly/Flappy-Bird.git
+   git clone https://github.com/TwinMindWeekly/Action-Bird.git
    ```
 2. Cài đặt các thư viện cần thiết:
    ```bash
