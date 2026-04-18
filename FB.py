@@ -313,7 +313,8 @@ class Game:
                 for y in range(new_surf.get_height()):
                     curr_color = new_surf.unmap_rgb(pixels[x, y])
                     # Nếu là màu vàng (R cao, G cao, B thấp) thì mới nhuộm
-                    if curr_color.r > 150 and curr_color.g > 100 and curr_color.b < 100:
+                    # Mở rộng dải màu một chút để phù hợp với đồ họa pixel art mới
+                    if curr_color.r > 120 and curr_color.g > 80 and curr_color.b < 100:
                         # Giữ lại độ sáng tương đối bằng cách nhân tỉ lệ
                         factor = curr_color.r / 255
                         pixels[x, y] = (int(target_color[0] * factor), 
@@ -670,6 +671,20 @@ class Game:
             
         self.draw_button(red_label, 50, y + 30, 300, 40, btn_color, RED)
         
+        y += 60
+        # 3. Blue Bird
+        blue_label = "Blue Bird - 75 HS"
+        if self.stats['current_skin'] == 'blue':
+            blue_label = "[ EQUIPPED ]"
+            btn_color = GRAY
+        elif 'blue' in self.stats['unlocked_skins']:
+            blue_label = "Blue Bird - [ SELECT ]"
+            btn_color = BLUE
+        else:
+            btn_color = (0, 50, 150)
+            if self.stats['total_credits'] < 75: btn_color = GRAY
+        self.draw_button(blue_label, 50, y + 30, 300, 40, btn_color, BLUE)
+        
         y += 100
         # Upgrades Placeholder
         self.screen.blit(self.font.render("--- UPGRADES ---", True, YELLOW), (50, y))
@@ -794,6 +809,22 @@ class Game:
                                     self.stats['current_skin'] = 'red'
                                     if 'red' not in self.stats['unlocked_skins']:
                                         self.stats['unlocked_skins'].append('red')
+                                    self.apply_current_skin()
+                                    self.save_stats()
+                                    self.play_sound('collect')
+
+                            # Blue Bird - 75 HS
+                            elif pygame.Rect(50, 270, 300, 40).collidepoint(mouse_pos):
+                                if 'blue' in self.stats['unlocked_skins']:
+                                    self.stats['current_skin'] = 'blue'
+                                    self.apply_current_skin()
+                                    self.save_stats()
+                                    self.play_sound('collect')
+                                elif self.stats['total_credits'] >= 75:
+                                    self.stats['total_credits'] -= 75
+                                    self.stats['current_skin'] = 'blue'
+                                    if 'blue' not in self.stats['unlocked_skins']:
+                                        self.stats['unlocked_skins'].append('blue')
                                     self.apply_current_skin()
                                     self.save_stats()
                                     self.play_sound('collect')
